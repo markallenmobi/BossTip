@@ -1,3 +1,7 @@
+-- Fight information referenced from:
+-- https://www.warcrafttavern.com/wotlk/guides/naxxramas-25/
+
+
 ClassColors = {
     ["Death Knight"] = { r = 0.77, g = 0.12, b = 0.23 },
     ["Druid"] = { r = 1.00, g = 0.49, b = 0.04 },
@@ -39,12 +43,38 @@ BossTipInfo = {
         DAMAGER = "Prioritize Crypt Guards during Locust Swarm. " ..
             "Stay at least 30-yards away from Anub'Rekhan during Locust Swarm."
     },
-    [16028] = { -- Patchwerk Naxxramas
-        Text = "Basic tank and spank. Kind of a DPS check",
+    [16028] = { -- Patchwerk Naxxramas 16028
+        Text = "Basic tank and spank, DPS check.\n" ..
+            "Clear the room thoroughly before engaging, fight away from the green river and slimes. " ..
+            "If you aren't a tank, make sure you are not in front of the boss!" ..
+            "Save your cooldowns to make sure they're up for Frenzy.",
+        TANK = "Keep your eye on threat, you need to be in the top 3. " ..
+            "Make sure your health is always high, use Healthstones and self heals if necessary — a tank death likely means a wipe. " ..
+            "Use defensive cooldowns to deal with Hateful StrikeHateful Strikes. " ..
+            "FrenzyFrenzy is the most important time for defensives. You'll want to use your biggest defensive cooldowns when Patchwerk enrages! " ..
+            "If you reach the BerserkBerserk phase, use defensives and keep your health high, this is now a dire situation and Patchwerk can no longer be taunted",
+        HEALER = "Be proactive with healing, every swing will take a big chunk out of your tanks.",
+        DAMAGER = "This fight is all about doing as much damage as you possibly can — " ..
+            "you only have to worry about your damage and threat here",
     },
+    [15990] = { -- Kel'Thuzad Naxxramas 15990
+        Text = "Phase 1\n" ..
+            "Avoid getting close to Soul Weaver and Soldier of the Frozen Wastes, deal with them exclusively at range. " ..
+            "Try to stay close to the center of the room to not accidentally pull enemies into melee range.\n" ..
+            "Phase 2\n" ..
+            "Make sure you are always 10-yards away from other players. " ..
+            "If you are closer to the melee stacks, make sure they have room to get away from their stack. " ..
+            "Always be ready to interrupt FrostboltFrostbolt, even if you are not assigned to interrupting. " ..
+            "Always be ready to crowd-control targets hit by Chains of Kel'ThuzadChains of Kel'Thuzad if you are able to. " ..
+            "Save your cooldowns for 45% Health, including BloodlustBloodlust/HeroismHeroism.",
+        
+    }
 }
 
 local function OnTooltipSetUnit(self)
+    -- Don't show massive tooltips in combat
+    if(UnitAffectingCombat("player")) then return; end
+
     local _, unit = self:GetUnit();
 
     if (unit) then
