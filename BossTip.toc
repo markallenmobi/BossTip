@@ -1,0 +1,7 @@
+## Interface: 30401
+## Title: BossTip
+## Version: 0.1.0
+## Notes: Adds various WOTLK boss tips to tooltips
+## Author: Thumdarlun
+
+BossTip.lua
